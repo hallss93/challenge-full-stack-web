@@ -4,7 +4,7 @@ import Vue from "vue";
 import axios from "axios";
 
 let config = {
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.VUE_APP_BASE_URL || "",
   timeout: 60 * 1000,
 };
 
