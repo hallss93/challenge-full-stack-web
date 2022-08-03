@@ -21,7 +21,7 @@ const routes: Array<RouteConfig> = [
         name: "NewStudent",
         component: () =>
           import(
-            /* webpackChunkName: "NewStudent" */ "../views/NewStudent.vue"
+            /* webpackChunkName: "NewStudent" */ "../views/NewStudent/index.vue"
           ),
       },
       {
@@ -29,7 +29,7 @@ const routes: Array<RouteConfig> = [
         name: "EditStudent",
         component: () =>
           import(
-            /* webpackChunkName: "NewStudent" */ "../views/NewStudent.vue"
+            /* webpackChunkName: "NewStudent" */ "../views/NewStudent/index.vue"
           ),
       },
     ],

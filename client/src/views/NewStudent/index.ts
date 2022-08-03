@@ -1,56 +1,3 @@
-<template>
-  <v-app class="body-light">
-    <p class="ma-0 py-3 text-center deep-purple lighten-4">Cadastro de aluno</p>
-    <v-container class="mt-10">
-      <v-form ref="form">
-        <v-row justify="space-between">
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="name"
-              :rules="rules.name"
-              label="Informe o Nome Completo"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="email"
-              :rules="rules.email"
-              label="Informe apenas um e-mail"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="ra"
-              type="number"
-              :rules="rules.ra"
-              label="Informe o Registro Acadêmico"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="cpf"
-              :rules="rules.cpf"
-              label="Informe o número do documento"
-              v-mask="'###.###.###-##'"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col class="d-flex justify-end">
-            <v-btn text class="mr-3" @click="autoFill()"
-              >Auto-Preencher</v-btn
-            >
-            <v-btn class="mr-3" @click="$router.push('/')">Cancelar</v-btn>
-            <v-btn color="primary" @click="save()">{{
-              id !== 0 ? "Atualizar" : "Salvar"
-            }}</v-btn>
-          </v-col>
-        </v-row>
-      </v-form>
-    </v-container>
-  </v-app>
-</template>
-<script lang="ts">
 import chance from "chance";
 import moment from "moment";
 import ResponseAPI from "@/interfaces/Response";
@@ -81,8 +28,8 @@ function isValidCPF(cpf: string): boolean {
   ) {
     return false;
   }
-  var sum = 0;
-  var rest;
+  let sum = 0;
+  let rest;
   for (let i = 1; i <= 9; i++)
     sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
   rest = (sum * 10) % 11;
@@ -195,8 +142,8 @@ export default class Students extends Vue {
           },
         });
         if (success) {
-          this.autoFill()
-         // this.$router.push("/");
+          this.autoFill();
+          // this.$router.push("/");
         }
       }
     }
@@ -218,4 +165,3 @@ export default class Students extends Vue {
     }
   }
 }
-</script>
