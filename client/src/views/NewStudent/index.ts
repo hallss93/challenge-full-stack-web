@@ -96,7 +96,9 @@ export default class Students extends Vue {
           },
         });
         if (success) {
-          this.$router.push("/");
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2000);
         }
       } else {
         const { success } = await this.create({
@@ -108,8 +110,9 @@ export default class Students extends Vue {
           },
         });
         if (success) {
-          this.autoFill();
-          // this.$router.push("/");
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2000);
         }
       }
     }

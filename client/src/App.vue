@@ -26,9 +26,11 @@ export default class App extends Vue {
   get show(): boolean {
     return this.showMessage;
   }
+  set show(val) {
+    console.log(val);
+  }
 }
 </script>
-
 
 <style lang="scss">
 .body-light {
