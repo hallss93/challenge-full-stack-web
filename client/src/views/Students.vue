@@ -93,7 +93,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text @click="dialogDeleteShow = false"> Cancelar </v-btn>
-          <v-btn color="primary" text > Excluir </v-btn>
+          <v-btn color="primary" text @click="deleteStudent()"> Excluir </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -136,7 +136,9 @@ export default class Students extends Vue {
   @State((state: IStateStudent) => state.students.count)
   count!: number;
 
-  
+  @Action("students/DELETE")
+  deleteOne!: ({ ra }: { ra: number }) => ResponseAPI<IStudent>;
+
   @Watch("studentList")
   watchstudentList(): void {
     this.requering = false;
@@ -233,6 +235,20 @@ export default class Students extends Vue {
   openDeleteMode(item: IStudent): void {
     this.student = item;
     this.dialogDeleteShow = true;
+  }
+
+  async deleteStudent(): Promise<void> {
+    try {
+      const { success } = await this.deleteOne({
+        ra: Number(this.student?.ra),
+      });
+      if (success) {
+        this.dialogDeleteShow = false;
+        this.getList();
+      }
+    } catch (e) {
+      this.dialogDeleteShow = false;
+    }
   }
 
   updateSortBy(value: string): void {
