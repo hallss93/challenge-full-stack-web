@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-import students from './students';
+import students from "./students";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     students,
   },
-  strict: process.env.NODE_ENV !== 'production',
-})
+  strict: process.env.NODE_ENV !== "production",
+});
