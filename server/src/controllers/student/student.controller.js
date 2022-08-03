@@ -108,3 +108,18 @@ export const update = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const remove = async (req, res) => {
+  try {
+    const { ra } = req.params;
+    const student = await Student.findOne({ where: { ra } });
+    if (!student) {
+      throw new Error("Student not exists with this RA");
+    }
+
+    student.destroy();
+    return successResponse(req, res, student);
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};

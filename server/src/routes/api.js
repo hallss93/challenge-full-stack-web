@@ -18,5 +18,10 @@ router.get(
   studentController.getOneStudent
 );
 router.put("/:ra", validate(studentValidator.update), studentController.update);
+router.delete(
+  "/:ra",
+  validate(studentValidator.getStudent),
+  studentController.remove
+);
 
 module.exports = router;
