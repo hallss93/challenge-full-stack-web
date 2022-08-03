@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Navigation from "../components/Navigation.vue";
+import Navigation from "../components/Navigation/index.vue";
 import { State } from "vuex-class";
 import { IStateStudent } from "@/store/students/state";
 
