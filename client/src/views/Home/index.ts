@@ -1,13 +1,5 @@
-<template>
-  <div>
-    <Navigation />
-    <router-view />
-  </div>
-</template>
-
-<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Navigation from "../components/Navigation/index.vue";
+import Navigation from "../../components/Navigation/index.vue";
 import { State } from "vuex-class";
 import { IStateStudent } from "@/store/students/state";
 
@@ -19,4 +11,3 @@ import { IStateStudent } from "@/store/students/state";
 export default class Home extends Vue {
   @State((state: IStateStudent) => state.students.loading) loading!: boolean;
 }
-</script>
