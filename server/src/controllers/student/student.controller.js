@@ -61,3 +61,26 @@ export const getOneStudent = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const update = async (req, res) => {
+  try {
+    const { name, email, cpf } = req.body;
+    const { ra } = req.params;
+    const student = await Student.findOne({ where: { ra } });
+    if (!student) {
+      throw new Error("Student not exists with this RA");
+    }
+
+    const payload = {
+      name,
+      email,
+      ra,
+      cpf,
+    };
+
+    student.update(payload, { where: { ra } });
+    return successResponse(req, res, student);
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
