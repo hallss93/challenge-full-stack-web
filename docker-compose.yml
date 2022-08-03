@@ -27,7 +27,7 @@ services:
      - app-network
     environment:
      - NODE_ENV=development
-    command: npm run start:http
+    command: npm run start
     
   client:
     build:
