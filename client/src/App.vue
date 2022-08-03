@@ -1,32 +1,42 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="deep-purple lighten-5" dark> </v-app-bar>
+    <v-main>
+      <v-snackbar v-model="show" :timeout="3000">
+        {{ message }}
+      </v-snackbar>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { State } from "vuex-class";
+import { IStateStudent } from "@/store/students/state";
+
+@Component({})
+export default class App extends Vue {
+  @State((state: IStateStudent) => state.students.showMessage)
+  showMessage!: boolean;
+
+  @State((state: IStateStudent) => state.students.message)
+  message!: boolean;
+
+  get show(): boolean {
+    return this.showMessage;
+  }
 }
+</script>
 
-nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style lang="scss">
+.body-light {
+  margin-left: 260px;
+  background-color: #f7f9fa !important;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  @media only screen and (max-width: 1264px) {
+    margin-left: 0px;
   }
 }
 </style>
