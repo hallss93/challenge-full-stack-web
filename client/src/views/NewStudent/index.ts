@@ -1,4 +1,3 @@
-import chance from "chance";
 import moment from "moment";
 import ResponseAPI from "@/interfaces/Response";
 import { Nullable } from "@/interfaces/types";
@@ -96,7 +95,9 @@ export default class Students extends Vue {
           },
         });
         if (success) {
-          this.$router.push("/");
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2000);
         }
       } else {
         const { success } = await this.create({
@@ -108,19 +109,12 @@ export default class Students extends Vue {
           },
         });
         if (success) {
-          this.autoFill();
-          // this.$router.push("/");
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2000);
         }
       }
     }
-  }
-
-  autoFill(): void {
-    const c = new chance();
-    this.name = c.name();
-    this.email = c.email();
-    this.ra = String(c.integer({ min: 1000, max: 9999999 }));
-    this.cpf = c.cpf();
   }
 
   created(): void {

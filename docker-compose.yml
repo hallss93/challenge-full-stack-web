@@ -1,18 +1,20 @@
 version: "3"
 
 services:
-  app-db:
+  challenge:
     image: mysql:5.7
     networks: 
      - app-network
     volumes: 
      - app_db_volume:/var/lib/mysql
     restart: always
+    ports: 
+     - "3305:3306"
     environment: 
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: app-db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: 5100
+      MYSQL_DATABASE: challenge
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 5100
 
   server:
     build: 
@@ -27,6 +29,14 @@ services:
      - app-network
     environment:
      - NODE_ENV=development
+     - DB_HOST=localhost
+     - DB_USER=root
+     - DB_PASS=5100
+     - DB_NAME=challenge
+     - DB_DIALECT=mysql
+     - DB_PORT=3305
+     - APP_HOST=localhost
+     - APP_PORT=3000
     command: npm run start
     
   client:
