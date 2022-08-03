@@ -11,5 +11,10 @@ router.get(
   validate(studentValidator.getAllStudents),
   studentController.allStudents
 );
+router.get(
+  "/:ra",
+  validate(studentValidator.getStudent),
+  studentController.getOneStudent
+);
 
 module.exports = router;

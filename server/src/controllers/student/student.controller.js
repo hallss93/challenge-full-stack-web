@@ -47,3 +47,17 @@ export const allStudents = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const getOneStudent = async (req, res) => {
+  try {
+    const { ra } = req.params;
+    const student = await Student.findOne({ where: { ra } });
+    if (!student) {
+      throw new Error("Student not exists with this RA");
+    }
+
+    return successResponse(req, res, student);
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
