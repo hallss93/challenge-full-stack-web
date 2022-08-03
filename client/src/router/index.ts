@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -8,20 +7,21 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () =>
+      import(/* webpackChunkName: "Home" */ "../views/Home/index.vue"),
     children: [
       {
         path: "/",
         name: "Students",
         component: () =>
-          import(/* webpackChunkName: "Students" */ "../views/Students.vue"),
+          import(/* webpackChunkName: "Students" */ "../views/Students/index.vue"),
       },
       {
         path: "/new",
         name: "NewStudent",
         component: () =>
           import(
-            /* webpackChunkName: "NewStudent" */ "../views/NewStudent.vue"
+            /* webpackChunkName: "NewStudent" */ "../views/NewStudent/index.vue"
           ),
       },
       {
@@ -29,7 +29,7 @@ const routes: Array<RouteConfig> = [
         name: "EditStudent",
         component: () =>
           import(
-            /* webpackChunkName: "NewStudent" */ "../views/NewStudent.vue"
+            /* webpackChunkName: "NewStudent" */ "../views/NewStudent/index.vue"
           ),
       },
     ],
