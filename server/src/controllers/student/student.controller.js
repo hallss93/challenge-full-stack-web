@@ -62,6 +62,30 @@ export const getOneStudent = async (req, res) => {
   }
 };
 
+export const create = async (req, res) => {
+  try {
+    const { name, email, ra, cpf } = req.body;
+
+    const student = await Student.findOne({
+      where: { ra },
+    });
+    if (student) {
+      throw new Error("Student already exists with same RA");
+    }
+    const payload = {
+      name,
+      email,
+      ra,
+      cpf,
+    };
+
+    const newStudent = await Student.create(payload);
+    return successResponse(req, res, { student: newStudent });
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
 export const update = async (req, res) => {
   try {
     const { name, email, cpf } = req.body;

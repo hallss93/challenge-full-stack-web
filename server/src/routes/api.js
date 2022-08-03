@@ -6,6 +6,7 @@ import * as studentValidator from "../controllers/student/student.validator";
 
 const router = express.Router();
 
+router.post("/", validate(studentValidator.create), studentController.create);
 router.get(
   "/",
   validate(studentValidator.getAllStudents),
